@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bunny 🐰 | Giới thiệu bản thân 💗</title>
 <style>
-  * { box-sizing: border-box; }
+  * {
+    box-sizing: border-box;
+  }
 
   body {
     margin: 0;
@@ -96,51 +98,30 @@
     padding: 0 5px;
   }
 
-  .btn {
-    background: linear-gradient(90deg, #ff80b3, #ffb6c1);
-    border: none;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 25px;
-    font-size: clamp(0.9rem, 3vw, 1rem);
-    cursor: pointer;
-    transition: transform 0.3s, background 0.3s;
-    margin-top: 12px;
-    width: fit-content;
-  }
-
-  .btn:hover {
-    transform: scale(1.08);
-    background: linear-gradient(90deg, #ff4da6, #ff99c8);
-  }
-
-  #secret {
-    margin-top: 10px;
-    font-size: clamp(0.9rem, 2.5vw, 1rem);
-    color: #ff4da6;
-    display: none;
-    animation: fadeIn 1.2s ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .bubble {
+  /* Popup cảm ơn */
+  .thank-popup {
     position: fixed;
-    bottom: -20px;
-    font-size: 1.2rem;
-    animation: bubbleUp 6s linear infinite;
-    color: #ff99cc;
-    opacity: 0.7;
-    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 240, 245, 0.95);
+    padding: 25px 35px;
+    border-radius: 25px;
+    box-shadow: 0 0 20px rgba(255, 182, 193, 0.8);
+    text-align: center;
+    font-size: 1.1rem;
+    color: #ff4da6;
+    animation: popupFade 7s ease-in-out forwards;
+    z-index: 999;
   }
 
-  @keyframes bubbleUp {
-    from { transform: translateY(0) scale(1); opacity: 0.8; }
-    to { transform: translateY(-100vh) scale(1.8); opacity: 0; }
+  @keyframes popupFade {
+    0% { opacity: 0; transform: translate(-50%, -60%) scale(0.8); }
+    15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -40%) scale(0.9); }
   }
+
 </style>
 </head>
 <body>
@@ -148,11 +129,9 @@
   <h1>🐰 Bunny – Cô gái yêu màu hồng 💗</h1>
 
   <div class="card">
-    <!-- ẢNH MỚI  -->
-    <img src="gen-h-z7179449045516_8c459512424350a6bfb0befa5a830484.jpg" alt="Bunny avatar" class="avatar">
-    
+    <img src="https://i.ibb.co/zxr1cYJ/gen-h-z7179449045516-8c459512424350a6bfb0befa5a830484.jpg" alt="Bunny avatar" class="avatar">
     <h2>🌸 (Bunny) 🌸</h2>
-    <p>🎂 <b>Ngày sinh:</b> 05/11/....</p>
+    <p>🎂 <b>Ngày sinh:</b> 05/11/1996</p>
     <p>💖 Nghệ danh: <b>Bunny 🐰</b></p>
 
     <p>Xin chào 💕! Mình là <b>Bunny 🐰</b> – cô gái nhỏ nhắn mang trong mình một trái tim ngọt ngào và luôn yêu đời 🌸. 
@@ -169,43 +148,11 @@
 
     <p>💌 <b>Châm ngôn sống:</b> “Luôn tỏa sáng theo cách riêng của mình — dù nhỏ bé nhưng luôn mang năng lượng tích cực, 
     dù nhẹ nhàng nhưng đủ mạnh mẽ để bước qua mọi khó khăn. Hãy sống thật hồng, thật đẹp, và thật Bunny 🐰.”</p>
-
-    <button class="btn" onclick="alert('Bunny gửi lời chào dễ thương đến bạn 💕 Chúc bạn một ngày hồng như chính nụ cười của Bunny 🐰!')">Nhấn để chào Bunny 🐰</button>
-    <br>
-    <button class="btn" onclick="showSecret()">Muốn biết bí mật của Bunny 🐰?</button>
-
-    <div id="secret">💞 Bí mật này Bunny giữ kỹ lắm 💖 Không được bật mí đâu nha 😚💞</div>
   </div>
 
-  <script>
-    function showSecret() {
-      const secret = document.getElementById('secret');
-      if (secret.style.display === 'none' || secret.style.display === '') {
-        secret.style.display = 'block';
-        for (let i = 0; i < 8; i++) {
-          const heart = document.createElement('div');
-          heart.className = 'bubble';
-          heart.textContent = ['💗','💖','💞','💕','💓'][Math.floor(Math.random()*5)];
-          heart.style.left = Math.random() * 100 + 'vw';
-          heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-          document.body.appendChild(heart);
-          setTimeout(() => heart.remove(), 7000);
-        }
-      } else {
-        secret.style.display = 'none';
-      }
-    }
-
-    setInterval(() => {
-      const heart = document.createElement('div');
-      heart.className = 'bubble';
-      heart.textContent = ['💗','💖','💞','💕','💓'][Math.floor(Math.random()*5)];
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 7000);
-    }, 1000);
-  </script>
+  <div class="thank-popup">
+    💖 Cảm ơn bạn đã ghé thăm thế giới của Bunny 🐰💖
+  </div>
 
 </body>
 </html>
