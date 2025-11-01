@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bunny 🐰 | Giới thiệu bản thân 💗</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: url("https://i.pinimg.com/originals/89/69/dc/8969dc3e963f6cc6d69b5a0db10ceaa2.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #4a2c2a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 15px;
+    overflow-x: hidden;
+  }
+
+  h1 {
+    margin-top: 30px;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: #ff66b3;
+    text-align: center;
+    text-shadow: 1px 1px #ffd6e8;
+    animation: glow 2s infinite alternate;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 10px #ff99c8; }
+    to { text-shadow: 0 0 20px #ff33cc; }
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.88);
+    border-radius: 25px;
+    box-shadow: 0 6px 25px rgba(255, 105, 180, 0.3);
+    padding: 25px;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    backdrop-filter: blur(6px);
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: "✨";
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    font-size: 1.8rem;
+    animation: sparkle 3s infinite linear;
+  }
+
+  .card::after {
+    content: "💖";
+    position: absolute;
+    bottom: -10px;
+    right: 15px;
+    font-size: 1.8rem;
+    animation: sparkle 3s infinite reverse linear;
+  }
+
+  @keyframes sparkle {
+    0% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+    100% { opacity: 0.5; transform: scale(1); }
+  }
+
+  .avatar {
+    width: min(120px, 35vw);
+    height: min(120px, 35vw);
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ff99cc;
+    box-shadow: 0 0 15px #ffb6c1;
+    margin-bottom: 15px;
+  }
+
+  h2 {
+    color: #ff4da6;
+    font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+  }
+
+  p {
+    font-size: clamp(0.95rem, 2.5vw, 1rem);
+    line-height: 1.6;
+    margin: 10px 0;
+    padding: 0 5px;
+  }
+
+  .btn {
+    background: linear-gradient(90deg, #ff80b3, #ffb6c1);
+    border: none;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+    margin-top: 12px;
+    width: fit-content;
+  }
+
+  .btn:hover {
+    transform: scale(1.08);
+    background: linear-gradient(90deg, #ff4da6, #ff99c8);
+  }
+
+  #secret {
+    margin-top: 10px;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    color: #ff4da6;
+    display: none;
+    animation: fadeIn 1.2s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .bubble {
+    position: fixed;
+    bottom: -20px;
+    font-size: 1.2rem;
+    animation: bubbleUp 6s linear infinite;
+    color: #ff99cc;
+    opacity: 0.7;
+    z-index: 0;
+  }
+
+  @keyframes bubbleUp {
+    from { transform: translateY(0) scale(1); opacity: 0.8; }
+    to { transform: translateY(-100vh) scale(1.8); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+  <h1>🐰 Bunny – Cô gái yêu màu hồng 💗</h1>
+
+  <div class="card">
+    <img src="D:\buny dễ thương\gen-h-z7179449045516_8c459512424350a6bfb0befa5a830484.jpg" alt="Bunny avatar" class="avatar">
+    <h2>🌸 (Bunny) 🌸</h2>
+    <p>🎂 <b>Ngày sinh:</b> 05/11/<span id="year">....</span> </p>
+    <p>💖 Nghệ danh: <b>Bunny 🐰</b></p>
+
+    <p>Xin chào 💕! Mình là <b>Bunny 🐰</b> – cô gái nhỏ nhắn mang trong mình một trái tim ngọt ngào và luôn yêu đời 🌸. 
+    Mình cực kỳ yêu màu hồng 💗 – màu của sự dịu dàng, lãng mạn và ấm áp, giống như cảm xúc mà mình muốn mang đến cho mọi người xung quanh.</p>
+
+    <p>👜 Mình rất thích <b>mua sắm</b> – không chỉ vì thích quần áo đẹp mà còn bởi cảm giác tự thưởng cho bản thân sau những ngày cố gắng. 
+    Mỗi món đồ đều là một “niềm vui nhỏ xinh” giúp mình thêm tự tin và rạng rỡ 🌷.</p>
+
+    <p>✈️ <b>Du lịch</b> là niềm đam mê lớn khác của mình! Mình thích xách balo lên và khám phá những nơi mới, hít thở bầu không khí trong lành, 
+    chụp những tấm ảnh thật đẹp 📸 và lưu lại kỷ niệm về những khoảnh khắc đáng yêu trong hành trình sống của chính mình 💖.</p>
+
+    <p>🌸 <b>Tính cách của Bunny</b> là sự pha trộn giữa sự dịu dàng và tinh nghịch – luôn vui vẻ, hòa đồng, đôi khi “bánh bèo” một chút nhưng chân thành, biết lắng nghe và rất quan tâm đến cảm xúc của người khác 💞. 
+    Mình tin rằng nụ cười có thể làm thế giới này dịu dàng hơn 🌍.</p>
+
+    <p>💌 <b>Châm ngôn sống:</b> “Luôn tỏa sáng theo cách riêng của mình — dù nhỏ bé nhưng luôn mang năng lượng tích cực, 
+    dù nhẹ nhàng nhưng đủ mạnh mẽ để bước qua mọi khó khăn. Hãy sống thật hồng, thật đẹp, và thật Bunny 🐰.”</p>
+
+    <button class="btn" onclick="alert('Bunny gửi lời chào dễ thương đến bạn 💕 Chúc bạn một ngày hồng như chính nụ cười của Bunny 🐰!')">Nhấn để chào Bunny 🐰</button>
+    <br>
+    <button class="btn" onclick="showSecret()">Muốn biết năm sinh Bunny 🐰?</button>
+
+    <div id="secret">💞 Bí mật này Bunny giữ kỹ lắm 💖 Không được bật mí đâu nha 😚💞</div>
+  </div>
+
+  <script>
+    function showSecret() {
+      const secret = document.getElementById('secret');
+      if (secret.style.display === 'none' || secret.style.display === '') {
+        secret.style.display = 'block';
+        for (let i = 0; i < 8; i++) {
+          const heart = document.createElement('div');
+          heart.className = 'bubble';
+          heart.textContent = ['💗','💖','💞','💕','💓'][Math.floor(Math.random()*5)];
+          heart.style.left = Math.random() * 100 + 'vw';
+          heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+          document.body.appendChild(heart);
+          setTimeout(() => heart.remove(), 7000);
+        }
+      } else {
+        secret.style.display = 'none';
+      }
+    }
+
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'bubble';
+      heart.textContent = ['💗','💖','💞','💕','💓'][Math.floor(Math.random()*5)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }, 1000);
+  </script>
+
+</body>
+</html>
