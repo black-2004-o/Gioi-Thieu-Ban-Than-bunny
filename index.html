@@ -141,14 +141,42 @@
     from { transform: translateY(0) scale(1); opacity: 0.8; }
     to { transform: translateY(-100vh) scale(1.8); opacity: 0; }
   }
+
+  /* Popup cảm ơn */
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 240, 245, 0.95);
+    padding: 25px 35px;
+    border-radius: 25px;
+    box-shadow: 0 0 25px rgba(255, 105, 180, 0.4);
+    text-align: center;
+    color: #ff4da6;
+    font-size: 1.1rem;
+    font-weight: 600;
+    opacity: 0;
+    z-index: 999;
+    transition: opacity 1s ease-in-out;
+    animation: popupFade 4s ease-in-out forwards;
+  }
+
+  @keyframes popupFade {
+    0% { opacity: 0; transform: translate(-50%, -55%); }
+    20% { opacity: 1; transform: translate(-50%, -50%); }
+    80% { opacity: 1; }
+    100% { opacity: 0; transform: translate(-50%, -45%); }
+  }
 </style>
 </head>
 <body>
 
+  <div class="popup">💌 Cảm ơn bạn đã ghé thăm thế giới của Bunny 🐰💖</div>
+
   <h1>🐰 Bunny – Cô gái yêu màu hồng 💗</h1>
 
   <div class="card">
-    <!-- ẢNH MỚI  -->
     <img src="gen-h-z7179449045516_8c459512424350a6bfb0befa5a830484.jpg" alt="Bunny avatar" class="avatar">
     
     <h2>🌸 (Bunny) 🌸</h2>
@@ -176,6 +204,14 @@
   </div>
 
   <script>
+    // Hiện popup cảm ơn khi mở trang
+    window.addEventListener('load', () => {
+      const popup = document.querySelector('.popup');
+      setTimeout(() => popup.style.opacity = '1', 500);
+      setTimeout(() => popup.remove(), 6000);
+    });
+
+    // Hiệu ứng trái tim khi mở bí mật
     function showSecret() {
       const secret = document.getElementById('secret');
       if (secret.style.display === 'none' || secret.style.display === '') {
@@ -194,6 +230,7 @@
       }
     }
 
+    // Hiệu ứng tim bay ngẫu nhiên
     setInterval(() => {
       const heart = document.createElement('div');
       heart.className = 'bubble';
