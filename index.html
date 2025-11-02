@@ -243,6 +243,13 @@
     setTimeout(() => popup.style.opacity = '0', 4000);
   }
 
+  function showSecret() {
+    const secretDiv = document.getElementById("secret");
+    const d = data[currentLang];
+    secretDiv.innerText = d.secret;
+    secretDiv.style.display = "block";
+  }
+
   changeLang('vi');
 </script>
 
