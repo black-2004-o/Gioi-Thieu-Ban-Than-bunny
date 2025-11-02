@@ -6,7 +6,6 @@
 <title>Bunny 🐰 | Giới thiệu bản thân 💗</title>
 <style>
   * { box-sizing: border-box; }
-
   body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -94,20 +93,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .bubble {
-    position: fixed;
-    bottom: -20px;
-    font-size: 1.2rem;
-    animation: bubbleUp 6s linear infinite;
-    color: #ff99cc;
-    opacity: 0.7;
-  }
-
-  @keyframes bubbleUp {
-    from { transform: translateY(0) scale(1); opacity: 0.8; }
-    to { transform: translateY(-100vh) scale(1.8); opacity: 0; }
-  }
-
   .popup {
     position: fixed;
     top: 50%;
@@ -158,9 +143,7 @@
 </head>
 <body>
 
-  <div class="popup" id="popup">💌Hey, cảm ơn cậu nhaaa 😚<br>
-Bunny vui lắm vì được cậu ghé qua 💕<br>
-Hãy cùng Bunny khám phá thêm nhiều điều dễ thương trong cuộc sống nào! 🌈</div>
+  <div class="popup" id="popup"></div>
 
   <div class="lang-select">
     <img src="https://flagcdn.com/w20/vn.png" onclick="changeLang('vi')" title="Tiếng Việt">
@@ -179,93 +162,89 @@ Hãy cùng Bunny khám phá thêm nhiều điều dễ thương trong cuộc s�
     <div id="secret"></div>
   </div>
 
-  <script>
-    const data = {
-      vi: {
-        title: "🐰 Bunny – Cô gái yêu màu hồng 💗",
-        name: "🌸 (Bunny) 🌸",
-        content: `
-          <p>Xin chào 💕! Mình là <b>Bunny 🐰</b> – cô gái nhỏ nhắn mang trong mình một trái tim ngọt ngào và luôn yêu đời 🌸.</p>
-          <p>Mình cực kỳ yêu màu hồng 💗 – màu của sự dịu dàng, lãng mạn và ấm áp, giống như cảm xúc mà mình muốn mang đến cho mọi người xung quanh.</p>
-          <p>👜 Mình rất thích <b>mua sắm</b> và <b>du lịch</b> ✈️ – mỗi chuyến đi đều mang đến niềm vui và sự tự tin mới 💖.</p>
-          <p>🌸 <b>Tính cách:</b> Dịu dàng, tinh nghịch, đôi khi “bánh bèo” nhưng luôn chân thành 💞.</p>
-          <p>💌 <b>Châm ngôn sống:</b> “Luôn tỏa sáng theo cách riêng của mình — dù nhỏ bé nhưng luôn mang năng lượng tích cực. Hãy sống thật hồng, thật đẹp, và thật Bunny 🐰.”</p>
-        `,
-        btn: "Muốn biết bí mật của Bunny 🐰?",
-        secret: "💞 Bí mật này Bunny giữ kỹ lắm 💖 Không được bật mí đâu nha 😚💞"
-      },
-      en: {
-        title: "🐰 Bunny – The girl who loves pink 💗",
-        name: "🌸 (Bunny) 🌸",
-        content: `
-          <p>Hello 💕! I'm <b>Bunny 🐰</b> – a sweet girl full of joy and positivity 🌸.</p>
-          <p>I truly adore the color pink 💗 – it represents tenderness, love, and warmth, just like how I wish to make others feel.</p>
-          <p>👜 I love <b>shopping</b> and <b>traveling</b> ✈️ – every trip gives me joy and confidence 💖.</p>
-          <p>🌸 <b>Personality:</b> Gentle, playful, sometimes dreamy but always sincere 💞.</p>
-          <p>💌 <b>Life quote:</b> “Always shine in your own way — stay pink, stay kind, stay Bunny 🐰.”</p>
-        `,
-        btn: "Wanna know Bunny's secret? 🐰",
-        secret: "💞 This secret is very special 💖 Bunny can't tell you yet 😚💞"
-      },
-      ru: {
-        title: "🐰 Банни – Девушка, любящая розовый 💗",
-        name: "🌸 (Банни) 🌸",
-        content: `
-          <p>Привет 💕! Я <b>Банни 🐰</b> – милая и жизнерадостная девушка 🌸.</p>
-          <p>Я обожаю розовый цвет 💗 – он символизирует нежность, любовь и тепло, как и мои чувства к людям вокруг.</p>
-          <p>👜 Я люблю <b>шопинг</b> и <b>путешествия</b> ✈️ – каждая поездка приносит радость и уверенность 💖.</p>
-          <p>🌸 <b>Характер:</b> Нежная, игривая, иногда мечтательная, но всегда искренняя 💞.</p>
-          <p>💌 <b>Девиз:</b> “Сияй по-своему — будь розовой, будь доброй, будь Банни 🐰.”</p>
-        `,
-        btn: "Хочешь узнать секрет Банни? 🐰",
-        secret: "💞 Этот секрет очень особенный 💖 Банни пока не может рассказать 😚💞"
-      },
-      cn: {
-        title: "🐰 Bunny – 喜爱粉色的女孩 💗",
-        name: "🌸 (Bunny) 🌸",
-        content: `
-          <p>你好 💕! 我是 <b>Bunny 🐰</b> – 一个甜美、开朗的女孩 🌸。</p>
-          <p>我非常喜欢粉红色 💗，它代表着温柔、浪漫与温暖，就像我想带给身边人的感觉。</p>
-          <p>👜 我喜欢 <b>购物</b> 和 <b>旅行</b> ✈️ – 每一次旅程都带来新的快乐和自信 💖。</p>
-          <p>🌸 <b>性格：</b> 温柔、调皮，有时有点梦幻，但总是真诚 💞。</p>
-          <p>💌 <b>座右铭：</b> “以自己的方式闪耀——保持粉色、保持善良、保持Bunny 🐰。”</p>
-        `,
-        btn: "想知道Bunny的小秘密吗？🐰",
-        secret: "💞 这是Bunny的秘密 💖 暂时不能告诉你哦 😚💞"
-      }
-    };
-
-    let currentLang = 'vi';
-
-    function changeLang(lang) {
-      currentLang = lang;
-      const d = data[lang];
-      document.getElementById("title").innerHTML = d.title;
-      document.getElementById("name").innerHTML = d.name;
-      document.getElementById("content").innerHTML = d.content;
-      document.getElementById("btnText").innerText = d.btn;
-      document.getElementById("secret").innerText = "";
-      document.getElementById("secret").style.display = "none";
+<script>
+  const data = {
+    vi: {
+      popup: "💌 Hey, cảm ơn cậu nhaaa 😚<br>Bunny vui lắm vì được cậu ghé qua 💕<br>Hãy cùng Bunny khám phá thêm nhiều điều dễ thương trong cuộc sống nào! 🌈",
+      title: "🐰 Bunny – Cô gái yêu màu hồng 💗",
+      name: "🌸 (Bunny) 🌸",
+      content: `
+        <p>Xin chào 💕! Mình là <b>Bunny 🐰</b> – cô gái nhỏ nhắn mang trong mình một trái tim ngọt ngào và luôn yêu đời 🌸.</p>
+        <p>Mình cực kỳ yêu màu hồng 💗 – màu của sự dịu dàng, lãng mạn và ấm áp, giống như cảm xúc mà mình muốn mang đến cho mọi người xung quanh.</p>
+        <p>👜 Mình rất thích <b>mua sắm</b> và <b>du lịch</b> ✈️ – mỗi chuyến đi đều mang đến niềm vui và sự tự tin mới 💖.</p>
+        <p>🌸 <b>Tính cách:</b> Dịu dàng, tinh nghịch, đôi khi “bánh bèo” nhưng luôn chân thành 💞.</p>
+        <p>💌 <b>Châm ngôn sống:</b> “Luôn tỏa sáng theo cách riêng của mình — dù nhỏ bé nhưng luôn mang năng lượng tích cực. Hãy sống thật hồng, thật đẹp, và thật Bunny 🐰.”</p>
+      `,
+      btn: "Muốn biết bí mật của Bunny 🐰?",
+      secret: "💞 Bí mật này Bunny giữ kỹ lắm 💖 Không được bật mí đâu nha 😚💞"
+    },
+    en: {
+      popup: "💌 Hey there! 😍<br>Bunny’s so happy you stopped by 💕<br>Let’s explore the world of cuteness together! 🌸",
+      title: "🐰 Bunny – The girl who loves pink 💗",
+      name: "🌸 (Bunny) 🌸",
+      content: `
+        <p>Hello 💕! I'm <b>Bunny 🐰</b> – a sweet girl full of joy and positivity 🌸.</p>
+        <p>I truly adore the color pink 💗 – it represents tenderness, love, and warmth, just like how I wish to make others feel.</p>
+        <p>👜 I love <b>shopping</b> and <b>traveling</b> ✈️ – every trip gives me joy and confidence 💖.</p>
+        <p>🌸 <b>Personality:</b> Gentle, playful, sometimes dreamy but always sincere 💞.</p>
+        <p>💌 <b>Life quote:</b> “Always shine in your own way — stay pink, stay kind, stay Bunny 🐰.”</p>
+      `,
+      btn: "Wanna know Bunny's secret? 🐰",
+      secret: "💞 This secret is very special 💖 Bunny can't tell you yet 😚💞"
+    },
+    ru: {
+      popup: "💌 Привет, спасибо, что зашёл 😚<br>Банни очень рада видеть тебя 💕<br>Давай вместе создадим немного милоты! 🌈",
+      title: "🐰 Банни – Девушка, любящая розовый 💗",
+      name: "🌸 (Банни) 🌸",
+      content: `
+        <p>Привет 💕! Я <b>Банни 🐰</b> – милая и жизнерадостная девушка 🌸.</p>
+        <p>Я обожаю розовый цвет 💗 – он символизирует нежность, любовь и тепло, как и мои чувства к людям вокруг.</p>
+        <p>👜 Я люблю <b>шопинг</b> и <b>путешествия</b> ✈️ – каждая поездка приносит радость и уверенность 💖.</p>
+        <p>🌸 <b>Характер:</b> Нежная, игривая, иногда мечтательная, но всегда искренняя 💞.</p>
+        <p>💌 <b>Девиз:</b> “Сияй по-своему — будь розовой, будь доброй, будь Банни 🐰.”</p>
+      `,
+      btn: "Хочешь узнать секрет Банни? 🐰",
+      secret: "💞 Этот секрет очень особенный 💖 Банни пока не может рассказать 😚💞"
+    },
+    cn: {
+      popup: "💌 你好呀！😚<br>Bunny 很开心你来了 💕<br>一起去发现更多可爱的事情吧！🌈",
+      title: "🐰 Bunny – 喜爱粉色的女孩 💗",
+      name: "🌸 (Bunny) 🌸",
+      content: `
+        <p>你好 💕! 我是 <b>Bunny 🐰</b> – 一个甜美、开朗的女孩 🌸。</p>
+        <p>我非常喜欢粉红色 💗，它代表着温柔、浪漫与温暖，就像我想带给身边人的感觉。</p>
+        <p>👜 我喜欢 <b>购物</b> 和 <b>旅行</b> ✈️ – 每一次旅程都带来新的快乐和自信 💖。</p>
+        <p>🌸 <b>性格：</b> 温柔、调皮，有时有点梦幻，但总是真诚 💞。</p>
+        <p>💌 <b>座右铭：</b> “以自己的方式闪耀——保持粉色、保持善良、保持Bunny 🐰。”</p>
+      `,
+      btn: "想知道Bunny的小秘密吗？🐰",
+      secret: "💞 这是Bunny的秘密 💖 暂时不能告诉你哦 😚💞"
     }
+  };
 
-    changeLang('vi');
+  let currentLang = 'vi';
 
-    window.addEventListener('load', () => {
-      const popup = document.getElementById('popup');
-      setTimeout(() => popup.style.opacity = '1', 500);
-      setTimeout(() => popup.remove(), 6000);
-    });
+  function changeLang(lang) {
+    currentLang = lang;
+    const d = data[lang];
+    document.getElementById("title").innerHTML = d.title;
+    document.getElementById("name").innerHTML = d.name;
+    document.getElementById("content").innerHTML = d.content;
+    document.getElementById("btnText").innerText = d.btn;
+    document.getElementById("secret").innerText = "";
+    document.getElementById("secret").style.display = "none";
+    showPopup(d.popup);
+  }
 
-    function showSecret() {
-      const secret = document.getElementById('secret');
-      if (secret.style.display === 'none' || secret.style.display === '') {
-        secret.innerText = data[currentLang].secret;
-        secret.style.display = 'block';
-      } else {
-        secret.style.display = 'none';
-      }
-    }
-  </script>
+  function showPopup(text) {
+    const popup = document.getElementById('popup');
+    popup.innerHTML = text;
+    popup.style.opacity = '1';
+    setTimeout(() => popup.style.opacity = '0', 4000);
+  }
+
+  changeLang('vi');
+</script>
 
 </body>
 </html>
