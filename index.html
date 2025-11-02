@@ -106,7 +106,6 @@
     cursor: pointer;
     transition: transform 0.3s, background 0.3s;
     margin-top: 12px;
-    width: fit-content;
   }
 
   .btn:hover {
@@ -168,52 +167,127 @@
     80% { opacity: 1; }
     100% { opacity: 0; transform: translate(-50%, -45%); }
   }
+
+  .lang-select {
+    position: fixed;
+    top: 10px;
+    right: 15px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .lang-select img {
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    transition: transform 0.2s;
+  }
+
+  .lang-select img:hover {
+    transform: scale(1.2);
+  }
 </style>
 </head>
 <body>
 
-  <div class="popup">💌Hey, cảm ơn cậu nhaaa 😚<br>
+  <div class="popup" id="popup">💌Hey, cảm ơn cậu nhaaa 😚<br>
 Bunny vui lắm vì được cậu ghé qua 💕<br>
 Hãy cùng Bunny khám phá thêm nhiều điều dễ thương trong cuộc sống nào! 🌈</div>
 
-  <h1>🐰 Bunny – Cô gái yêu màu hồng 💗</h1>
+  <!-- Chọn ngôn ngữ -->
+  <div class="lang-select">
+    <img src="https://flagcdn.com/w20/vn.png" onclick="changeLang('vi')" title="Tiếng Việt">
+    <img src="https://flagcdn.com/w20/gb.png" onclick="changeLang('en')" title="English">
+    <img src="https://flagcdn.com/w20/ru.png" onclick="changeLang('ru')" title="Русский">
+    <img src="https://flagcdn.com/w20/cn.png" onclick="changeLang('cn')" title="中文">
+  </div>
+
+  <h1 id="title">🐰 Bunny – Cô gái yêu màu hồng 💗</h1>
 
   <div class="card">
     <img src="gen-h-z7179449045516_8c459512424350a6bfb0befa5a830484.jpg" alt="Bunny avatar" class="avatar">
-    
-    <h2>🌸 (Bunny) 🌸</h2>
-    <p>🎂 <b>Ngày sinh:</b> 05/11/....</p>
-    <p>💖 Nghệ danh: <b>Bunny 🐰</b></p>
-
-    <p>Xin chào 💕! Mình là <b>Bunny 🐰</b> – cô gái nhỏ nhắn mang trong mình một trái tim ngọt ngào và luôn yêu đời 🌸. 
-    Mình cực kỳ yêu màu hồng 💗 – màu của sự dịu dàng, lãng mạn và ấm áp, giống như cảm xúc mà mình muốn mang đến cho mọi người xung quanh.</p>
-
-    <p>👜 Mình rất thích <b>mua sắm</b> – không chỉ vì thích quần áo đẹp mà còn bởi cảm giác tự thưởng cho bản thân sau những ngày cố gắng. 
-    Mỗi món đồ đều là một “niềm vui nhỏ xinh” giúp mình thêm tự tin và rạng rỡ 🌷.</p>
-
-    <p>✈️ <b>Du lịch</b> là niềm đam mê lớn khác của mình! Mình thích xách balo lên và khám phá những nơi mới, hít thở bầu không khí trong lành, 
-    chụp những tấm ảnh thật đẹp 📸 và lưu lại kỷ niệm về những khoảnh khắc đáng yêu trong hành trình sống của chính mình 💖.</p>
-
-    <p>🌸 <b>Tính cách của Bunny</b> là sự pha trộn giữa sự dịu dàng và tinh nghịch – luôn vui vẻ, hòa đồng, đôi khi “bánh bèo” một chút nhưng chân thành, biết lắng nghe và rất quan tâm đến cảm xúc của người khác 💞. 
-    Mình tin rằng nụ cười có thể làm thế giới này dịu dàng hơn 🌍.</p>
-
-    <p>💌 <b>Châm ngôn sống:</b> “Luôn tỏa sáng theo cách riêng của mình — dù nhỏ bé nhưng luôn mang năng lượng tích cực, 
-    dù nhẹ nhàng nhưng đủ mạnh mẽ để bước qua mọi khó khăn. Hãy sống thật hồng, thật đẹp, và thật Bunny 🐰.”</p>
-
-    <button class="btn" onclick="showSecret()">Muốn biết bí mật của Bunny 🐰?</button>
-
+    <h2 id="name">🌸 (Bunny) 🌸</h2>
+    <div id="content"></div>
+    <button class="btn" onclick="showSecret()" id="btnText">Muốn biết bí mật của Bunny 🐰?</button>
     <div id="secret">💞 Bí mật này Bunny giữ kỹ lắm 💖 Không được bật mí đâu nha 😚💞</div>
   </div>
 
   <script>
-    // Hiện popup cảm ơn khi mở trang
+    const data = {
+      vi: {
+        title: "🐰 Bunny – Cô gái yêu màu hồng 💗",
+        name: "🌸 (Bunny) 🌸",
+        content: `
+          <p>🎂 <b>Ngày sinh:</b> 05/11/....</p>
+          <p>💖 Nghệ danh: <b>Bunny 🐰</b></p>
+          <p>Xin chào 💕! Mình là <b>Bunny 🐰</b> – cô gái nhỏ nhắn mang trong mình một trái tim ngọt ngào và luôn yêu đời 🌸.</p>
+          <p>👜 Mình rất thích <b>mua sắm</b> và <b>du lịch</b> ✈️. Mỗi hành trình là một kỷ niệm đáng nhớ 💖.</p>
+          <p>🌸 <b>Tính cách:</b> Dịu dàng, vui vẻ, đôi khi “bánh bèo” nhưng luôn chân thành 💞.</p>
+          <p>💌 <b>Châm ngôn sống:</b> “Luôn tỏa sáng theo cách riêng của mình.”</p>
+        `,
+        btn: "Muốn biết bí mật của Bunny 🐰?"
+      },
+      en: {
+        title: "🐰 Bunny – The girl who loves pink 💗",
+        name: "🌸 (Bunny) 🌸",
+        content: `
+          <p>🎂 <b>Birthday:</b> 05/11/....</p>
+          <p>💖 Stage name: <b>Bunny 🐰</b></p>
+          <p>Hello 💕! I'm <b>Bunny 🐰</b> – a sweet girl with a cheerful heart 🌸.</p>
+          <p>👜 I love <b>shopping</b> and <b>traveling</b> ✈️. Each trip brings new memories 💖.</p>
+          <p>🌸 <b>Personality:</b> Gentle, cheerful, a little dreamy but always sincere 💞.</p>
+          <p>💌 <b>Life quote:</b> “Always shine in your own way.”</p>
+        `,
+        btn: "Wanna know Bunny's secret? 🐰"
+      },
+      ru: {
+        title: "🐰 Банни – Девушка, любящая розовый 💗",
+        name: "🌸 (Банни) 🌸",
+        content: `
+          <p>🎂 <b>Дата рождения:</b> 05/11/....</p>
+          <p>💖 Сценическое имя: <b>Bunny 🐰</b></p>
+          <p>Привет 💕! Я <b>Bunny 🐰</b> – милая и жизнерадостная девушка 🌸.</p>
+          <p>👜 Я люблю <b>шопинг</b> и <b>путешествия</b> ✈️. Каждая поездка — новое воспоминание 💖.</p>
+          <p>🌸 <b>Характер:</b> Нежная, добрая и искренняя 💞.</p>
+          <p>💌 <b>Девиз:</b> “Сияй по-своему.”</p>
+        `,
+        btn: "Хочешь узнать секрет Bunny? 🐰"
+      },
+      cn: {
+        title: "🐰 Bunny – 爱粉色的女孩 💗",
+        name: "🌸 (Bunny) 🌸",
+        content: `
+          <p>🎂 <b>生日：</b> 05/11/....</p>
+          <p>💖 昵称：<b>Bunny 🐰</b></p>
+          <p>你好 💕！我是 <b>Bunny 🐰</b>，一个甜美又开朗的女孩 🌸。</p>
+          <p>👜 我喜欢 <b>购物</b> 和 <b>旅行</b> ✈️。每次旅行都是新的回忆 💖。</p>
+          <p>🌸 <b>性格：</b> 温柔、活泼、真诚 💞。</p>
+          <p>💌 <b>人生格言：</b> “以自己的方式闪耀。”</p>
+        `,
+        btn: "想知道 Bunny 的秘密吗？🐰"
+      }
+    };
+
+    function changeLang(lang) {
+      document.getElementById("title").innerHTML = data[lang].title;
+      document.getElementById("name").innerHTML = data[lang].name;
+      document.getElementById("content").innerHTML = data[lang].content;
+      document.getElementById("btnText").innerText = data[lang].btn;
+    }
+
+    // Mặc định tiếng Việt
+    changeLang('vi');
+
+    // Popup cảm ơn
     window.addEventListener('load', () => {
-      const popup = document.querySelector('.popup');
+      const popup = document.getElementById('popup');
       setTimeout(() => popup.style.opacity = '1', 500);
       setTimeout(() => popup.remove(), 6000);
     });
 
-    // Hiệu ứng trái tim khi mở bí mật
+    // Bí mật tim bay
     function showSecret() {
       const secret = document.getElementById('secret');
       if (secret.style.display === 'none' || secret.style.display === '') {
@@ -232,7 +306,7 @@ Hãy cùng Bunny khám phá thêm nhiều điều dễ thương trong cuộc s�
       }
     }
 
-    // Hiệu ứng tim bay ngẫu nhiên
+    // Tim bay ngẫu nhiên
     setInterval(() => {
       const heart = document.createElement('div');
       heart.className = 'bubble';
