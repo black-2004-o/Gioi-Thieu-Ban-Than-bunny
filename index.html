@@ -50,30 +50,6 @@
     overflow: hidden;
   }
 
-  .card::before {
-    content: "✨";
-    position: absolute;
-    top: -10px;
-    left: 10px;
-    font-size: 1.8rem;
-    animation: sparkle 3s infinite linear;
-  }
-
-  .card::after {
-    content: "💖";
-    position: absolute;
-    bottom: -10px;
-    right: 15px;
-    font-size: 1.8rem;
-    animation: sparkle 3s infinite reverse linear;
-  }
-
-  @keyframes sparkle {
-    0% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.3); }
-    100% { opacity: 0.5; transform: scale(1); }
-  }
-
   .avatar {
     width: min(120px, 35vw);
     height: min(120px, 35vw);
@@ -84,16 +60,12 @@
     margin-bottom: 15px;
   }
 
-  h2 {
-    color: #ff4da6;
-    font-size: clamp(1.3rem, 3.5vw, 1.8rem);
-  }
+  h2 { color: #ff4da6; }
 
   p {
     font-size: clamp(0.95rem, 2.5vw, 1rem);
     line-height: 1.6;
     margin: 10px 0;
-    padding: 0 5px;
   }
 
   .btn {
@@ -102,16 +74,12 @@
     color: white;
     padding: 12px 25px;
     border-radius: 25px;
-    font-size: clamp(0.9rem, 3vw, 1rem);
     cursor: pointer;
-    transition: transform 0.3s, background 0.3s;
+    transition: transform 0.3s;
     margin-top: 12px;
   }
 
-  .btn:hover {
-    transform: scale(1.08);
-    background: linear-gradient(90deg, #ff4da6, #ff99c8);
-  }
+  .btn:hover { transform: scale(1.08); }
 
   #secret {
     margin-top: 10px;
@@ -133,7 +101,6 @@
     animation: bubbleUp 6s linear infinite;
     color: #ff99cc;
     opacity: 0.7;
-    z-index: 0;
   }
 
   @keyframes bubbleUp {
@@ -202,14 +169,14 @@ Hãy cùng Bunny khám phá thêm nhiều điều dễ thương trong cuộc s�
     <img src="https://flagcdn.com/w20/cn.png" onclick="changeLang('cn')" title="中文">
   </div>
 
-  <h1 id="title">🐰 Bunny – Cô gái yêu màu hồng 💗</h1>
+  <h1 id="title"></h1>
 
   <div class="card">
     <img src="gen-h-z7179449045516_8c459512424350a6bfb0befa5a830484.jpg" alt="Bunny avatar" class="avatar">
-    <h2 id="name">🌸 (Bunny) 🌸</h2>
+    <h2 id="name"></h2>
     <div id="content"></div>
-    <button class="btn" onclick="showSecret()" id="btnText">Muốn biết bí mật của Bunny 🐰?</button>
-    <div id="secret">💞 Bí mật này Bunny giữ kỹ lắm 💖 Không được bật mí đâu nha 😚💞</div>
+    <button class="btn" onclick="showSecret()" id="btnText"></button>
+    <div id="secret"></div>
   </div>
 
   <script>
@@ -220,34 +187,65 @@ Hãy cùng Bunny khám phá thêm nhiều điều dễ thương trong cuộc s�
         content: `
           <p>Xin chào 💕! Mình là <b>Bunny 🐰</b> – cô gái nhỏ nhắn mang trong mình một trái tim ngọt ngào và luôn yêu đời 🌸.</p>
           <p>Mình cực kỳ yêu màu hồng 💗 – màu của sự dịu dàng, lãng mạn và ấm áp, giống như cảm xúc mà mình muốn mang đến cho mọi người xung quanh.</p>
-          <p>👜 Mình rất thích <b>mua sắm</b> – không chỉ vì thích quần áo đẹp mà còn bởi cảm giác tự thưởng cho bản thân sau những ngày cố gắng. 
-          Mỗi món đồ đều là một “niềm vui nhỏ xinh” giúp mình thêm tự tin và rạng rỡ 🌷.</p>
-          <p>✈️ <b>Du lịch</b> là niềm đam mê lớn khác của mình! Mình thích khám phá những nơi mới, chụp ảnh thật đẹp 📸 và lưu lại kỷ niệm đáng yêu 💖.</p>
-          <p>🌸 <b>Tính cách:</b> Dịu dàng, tinh nghịch, đôi khi “bánh bèo” nhưng luôn chân thành và biết lắng nghe 💞.</p>
-          <p>💌 <b>Châm ngôn sống:</b> “Luôn tỏa sáng theo cách riêng của mình — dù nhỏ bé nhưng luôn mang năng lượng tích cực. 
-          Hãy sống thật hồng, thật đẹp, và thật Bunny 🐰.”</p>
+          <p>👜 Mình rất thích <b>mua sắm</b> và <b>du lịch</b> ✈️ – mỗi chuyến đi đều mang đến niềm vui và sự tự tin mới 💖.</p>
+          <p>🌸 <b>Tính cách:</b> Dịu dàng, tinh nghịch, đôi khi “bánh bèo” nhưng luôn chân thành 💞.</p>
+          <p>💌 <b>Châm ngôn sống:</b> “Luôn tỏa sáng theo cách riêng của mình — dù nhỏ bé nhưng luôn mang năng lượng tích cực. Hãy sống thật hồng, thật đẹp, và thật Bunny 🐰.”</p>
         `,
-        btn: "Muốn biết bí mật của Bunny 🐰?"
+        btn: "Muốn biết bí mật của Bunny 🐰?",
+        secret: "💞 Bí mật này Bunny giữ kỹ lắm 💖 Không được bật mí đâu nha 😚💞"
       },
       en: {
         title: "🐰 Bunny – The girl who loves pink 💗",
         name: "🌸 (Bunny) 🌸",
         content: `
-          <p>Hello 💕! I'm <b>Bunny 🐰</b> – a sweet, cheerful girl who loves spreading positive energy 🌸.</p>
-          <p>💗 Pink is my favorite color – it represents love, softness, and warmth, just like my vibes.</p>
-          <p>👜 I love <b>shopping</b> and <b>traveling</b> ✈️ – every trip brings new joy and confidence 💖.</p>
+          <p>Hello 💕! I'm <b>Bunny 🐰</b> – a sweet girl full of joy and positivity 🌸.</p>
+          <p>I truly adore the color pink 💗 – it represents tenderness, love, and warmth, just like how I wish to make others feel.</p>
+          <p>👜 I love <b>shopping</b> and <b>traveling</b> ✈️ – every trip gives me joy and confidence 💖.</p>
           <p>🌸 <b>Personality:</b> Gentle, playful, sometimes dreamy but always sincere 💞.</p>
           <p>💌 <b>Life quote:</b> “Always shine in your own way — stay pink, stay kind, stay Bunny 🐰.”</p>
         `,
-        btn: "Wanna know Bunny's secret? 🐰"
+        btn: "Wanna know Bunny's secret? 🐰",
+        secret: "💞 This secret is very special 💖 Bunny can't tell you yet 😚💞"
+      },
+      ru: {
+        title: "🐰 Банни – Девушка, любящая розовый 💗",
+        name: "🌸 (Банни) 🌸",
+        content: `
+          <p>Привет 💕! Я <b>Банни 🐰</b> – милая и жизнерадостная девушка 🌸.</p>
+          <p>Я обожаю розовый цвет 💗 – он символизирует нежность, любовь и тепло, как и мои чувства к людям вокруг.</p>
+          <p>👜 Я люблю <b>шопинг</b> и <b>путешествия</b> ✈️ – каждая поездка приносит радость и уверенность 💖.</p>
+          <p>🌸 <b>Характер:</b> Нежная, игривая, иногда мечтательная, но всегда искренняя 💞.</p>
+          <p>💌 <b>Девиз:</b> “Сияй по-своему — будь розовой, будь доброй, будь Банни 🐰.”</p>
+        `,
+        btn: "Хочешь узнать секрет Банни? 🐰",
+        secret: "💞 Этот секрет очень особенный 💖 Банни пока не может рассказать 😚💞"
+      },
+      cn: {
+        title: "🐰 Bunny – 喜爱粉色的女孩 💗",
+        name: "🌸 (Bunny) 🌸",
+        content: `
+          <p>你好 💕! 我是 <b>Bunny 🐰</b> – 一个甜美、开朗的女孩 🌸。</p>
+          <p>我非常喜欢粉红色 💗，它代表着温柔、浪漫与温暖，就像我想带给身边人的感觉。</p>
+          <p>👜 我喜欢 <b>购物</b> 和 <b>旅行</b> ✈️ – 每一次旅程都带来新的快乐和自信 💖。</p>
+          <p>🌸 <b>性格：</b> 温柔、调皮，有时有点梦幻，但总是真诚 💞。</p>
+          <p>💌 <b>座右铭：</b> “以自己的方式闪耀——保持粉色、保持善良、保持Bunny 🐰。”</p>
+        `,
+        btn: "想知道Bunny的小秘密吗？🐰",
+        secret: "💞 这是Bunny的秘密 💖 暂时不能告诉你哦 😚💞"
       }
     };
 
+    let currentLang = 'vi';
+
     function changeLang(lang) {
-      document.getElementById("title").innerHTML = data[lang].title;
-      document.getElementById("name").innerHTML = data[lang].name;
-      document.getElementById("content").innerHTML = data[lang].content;
-      document.getElementById("btnText").innerText = data[lang].btn;
+      currentLang = lang;
+      const d = data[lang];
+      document.getElementById("title").innerHTML = d.title;
+      document.getElementById("name").innerHTML = d.name;
+      document.getElementById("content").innerHTML = d.content;
+      document.getElementById("btnText").innerText = d.btn;
+      document.getElementById("secret").innerText = "";
+      document.getElementById("secret").style.display = "none";
     }
 
     changeLang('vi');
@@ -261,30 +259,12 @@ Hãy cùng Bunny khám phá thêm nhiều điều dễ thương trong cuộc s�
     function showSecret() {
       const secret = document.getElementById('secret');
       if (secret.style.display === 'none' || secret.style.display === '') {
+        secret.innerText = data[currentLang].secret;
         secret.style.display = 'block';
-        for (let i = 0; i < 8; i++) {
-          const heart = document.createElement('div');
-          heart.className = 'bubble';
-          heart.textContent = ['💗','💖','💞','💕','💓'][Math.floor(Math.random()*5)];
-          heart.style.left = Math.random() * 100 + 'vw';
-          heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-          document.body.appendChild(heart);
-          setTimeout(() => heart.remove(), 7000);
-        }
       } else {
         secret.style.display = 'none';
       }
     }
-
-    setInterval(() => {
-      const heart = document.createElement('div');
-      heart.className = 'bubble';
-      heart.textContent = ['💗','💖','💞','💕','💓'][Math.floor(Math.random()*5)];
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 7000);
-    }, 1000);
   </script>
 
 </body>
